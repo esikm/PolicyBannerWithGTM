@@ -47,6 +47,8 @@ You can make it easily to use this software.
       This variable will be set 0 befor permission , 1 after permission.
 
       ex) the case with JQuery
+
+````JavaScript
       if (typeof plcy_isAccepted === "undefined"){
         var plcy_isAccepted = 0;
       }
@@ -60,5 +62,6 @@ You can make it easily to use this software.
           }
         })
       });
+```
 
-  That's all.
+That's all.
