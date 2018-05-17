@@ -1,4 +1,76 @@
 # Consent Manager (PolicyBannerWithGTM)
+## 日本語 (English at the bottom )
+こちらは、Webサイトなどでクッキーのパーミッションを取るためのバナー表示を行うコンセントマネージャーと呼ばれるものです。
+Google Tag Managerとも連携しており、許可をした人にだけ、特定のタグを出すということも可能です。
+こちらをベースに少しカスタマイズをしていただくことで、よりかんたんに対応ができるのではないかと思います。
+
+Webで事業を提供する企業がより、消費者を安心させる情報の取り扱いと提供につながると良いなと思います。
+
+このソフトウェアは MIT License　です。
+Copyright (c) 2018 effort science co.,ltd.
+
+ <使い方>
+  1. "plcy_ja.js" というjsファイルを取得して、許可を必要とする全ページに埋め込んでください。
+      ex) <script src="./plcy_ja.js"></script>
+
+  2. 必要ならカスタマイズが可能です。
+     このJSタグでは全変数に"plcy_"というPrefixを設定しており、他の変数と競合するのを避けています。
+
+    * plcy_url_cookie_policy (任意)
+      こちらはCookie PolicyやプライバシーポリシーページのURLを設定してください。
+      空白にした場合、リンク自体を表示しないことも可能です。
+
+    * plcy_message (以下、必須)
+      表示したい許認可メッセージを入力してください。
+
+    * plcy_button_name
+      「Cookie使用許可」などボタンの名称を任意で変更してください。
+
+    * plcy_button_color
+      ボタンの色を決めてください。ヘキサ表現（'#000000'）や定義済み名称（'black'）、rgbaなど自由に設定してみてください。
+
+    * plcy_border_color
+      こちらはボーダー（枠線）の色です。
+
+    * plcy_back_color
+      バナーの背景の色です。デフォルトは黒っぽく透明な色にしていますが、サイトに合わせて変えても良いと思います。
+
+    * plcy_font_color
+      フォントカラーです。デフォルトは白です。
+
+  3. [GTMにて(任意)]　Google Tag Manager ("GTM")にてデータレイヤー（DataLayer）変数を作成してください。
+      変数名に、'plcyIsAccepted'、デフォルト値に '0'を設定してください。（こちらに、データをプッシュして起動判定するため間違えると稼働しません）
+
+  4. [GTMにて(任意)] トリガーメニューから進み、カスタムイベントを作成してください。
+      イベント名に'eventPolicyAccepted' を設定してください。（こちらを、javascriptから起動しますので間違えないでください。）
+      トリガーの名称はなんでも構いません。
+
+  5. [GTMにて(任意)] ４で作成したトリガーを発火コントロールをしたいタグに紐づけてください。
+      既存でトリガー（All Pageなど）に設定している場合、GTMでは追加すると「または」になるので、きちんと削除することを忘れないでください。
+
+  6. [htmlページにて任意] 必要なら、許可を行うまで起動させたくないボタンや機能を制御できます。
+      変数は、'plcy_isAccepted'を使用してください。
+      許可前は '0' 許可後は '1'が設定されます。以下のように使うと良いでしょう。
+
+      ex) JQueryを使った事例
+
+```JavaScript
+      if (typeof plcy_isAccepted === "undefined"){
+        var plcy_isAccepted = 0;
+      }
+      $(function(){
+        $('#input_btn').click(function(e){
+          e.preventDefault();
+          if (plcy_isAccepted >0){
+            alert('はい、あなたは許可されています。');  //ここを書き換えてください。
+          }else{
+            alert('恐縮ですが、ご利用前に、許可するを押してください。');   //ここを書き換えてください。
+          }
+        })
+      });
+```
+
+## English
 This software is enable to show "Getting Cookie Permission Bar" and get accept.
 If you want to start some tools like Google Analytics or some tools after getting cookie permissions from users.
 You can make it easily to use this software.
@@ -46,9 +118,9 @@ You can make it easily to use this software.
       Please use the 'plcy_isAccepted'.
       This variable will be set 0 befor permission , 1 after permission.
 
-      ex) the case with JQuery
+      ex) the case with jQuery
 
-````JavaScript
+```JavaScript
       if (typeof plcy_isAccepted === "undefined"){
         var plcy_isAccepted = 0;
       }

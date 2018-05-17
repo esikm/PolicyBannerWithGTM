@@ -1,79 +1,25 @@
 /**
-  This software is MIT License.
-  Copyright (c) 2018 effort science co.,ltd.
-
   GTM PolicyBanner
-    This software is enable to show "Getting Cookie Permission Bar" and get accept.
-    If you want to start some tools like Google Analytics or some tools after getting cookie permissions from users.
+   Google TagManager (GTM)を利用して、クッキー利用許可のないタグを発火しないことができます。
 
-    You can make it easily to use this software.
+   <利用方法>
+    1. このJSファイルを制御したい全てのページで読み込んでください。　<script src="./plcy_ja.js"></script>
+    2. plcy_xxxx の変数に渡すデータをカスタマイズしてください。
+    3. GTM 「変数」で　データレイヤー変数を作成し、'plcyIsAccepted':0 としてください
+    4. GTM 「トリガー」でカスタムイベントを追加し、イベント名を'eventPolicyAccepted' にしてください。
+    5. 発火をコントロールしたいタグのトリガーに、上記4で作ったカスタムイベントを指定してください。
 
-   <Usage>
-    1. Please load this js files in your html file.
-        ex) <script src="./plcy_ja.js"></script>
-    2. Please Customize the data if you like.
-       We use "plcy_" strings as prefix to avoid coflict variables you use in your site.
-
-      * plcy_url_cookie_policy (Optional)
-        Please write the URL link for privacy policy page or cookie policy page.
-        If this is blank , it's OK , this system don't show the link.
-
-      * plcy_message (Mandatory)
-        Set message you want to show.
-
-      * plcy_button_name
-        Set button name users push when they accept.
-
-      * plcy_button_color
-        Set button color like '#000000' or 'black' as you like.
-
-      * plcy_border_color
-        Set button border line.
-
-      * plcy_back_color
-        Please set background color of permission banner.
-
-      * plcy_font_color
-        Set font color.
-
-    3. [In GTM] Create DataLayer Valriable in Google Tag Manager ("GTM").
-        Set 'plcyIsAccepted' for Varibale name and 0 for default value.
-
-    4. [In GTM] Make custom event from Trigger menu.
-        You should set it 'eventPolicyAccepted' as event name.
-
-    5. [In GTM] Set the trigger you created in No.4 into Tag you want to control.
-
-    6. If you want to stop use some features in your site before permission,
-        Please use the 'plcy_isAccepted'.
-        This variable will be set 0 befor permission , 1 after permission.
-
-        ex) the case with JQuery
-        if (typeof plcy_isAccepted === "undefined"){
-          var plcy_isAccepted = 0;
-        }
-        $(function(){
-          $('#input_btn').click(function(e){
-            e.preventDefault();
-            if (plcy_isAccepted >0){
-              alert('Yes , you can use our tool! ');
-            }else{
-              alert('Please give us permission to use your cookies !')
-            }
-          })
-        });
-
-    That's all.
 **/
 
-
-var plcy_url_cookie_policy = './policy.html';
-var plcy_message = 'We are using first party / third party cookie in our site to serve , anlyze and improve our service. If you push "accept " , it means you accept to store our cookies in your device.';
-var plcy_button_name = 'Accept All Cookies';
-var plcy_button_color = 'lightgreen';
-var plcy_border_color = 'lightgreen';
-var plcy_back_color = '#272727db';
-var plcy_font_color = 'white';
+//以下の変数は自由にカスタマイズ可能です。
+var plcy_url_cookie_policy = ''; //CookieポリシーページのURLを記入。空欄の場合はリンクが表示されません。
+//表示されるメッセージをカスタマイズしてください。
+var plcy_message = '当サイトでは、クッキーを利用したサービス提供を行なっております。"クッキー利用を許可する"を押して頂いた場合、当サイトの利便性の向上、分析による改善を行うため、ファーストパーティ・サードパーティーのCookieをデバイスに保存することに許諾を頂いたことになります。';
+var plcy_button_name = 'クッキー利用を許可する'; //ボタンの名称を決めてください。
+var plcy_button_color = 'lightgreen'; //ボタンの色を決めてください。
+var plcy_border_color = 'lightgreen'; //ボタンの線を決めてください。
+var plcy_back_color = '#272727db';    //メッセージバナーの背景色を指定してください。
+var plcy_font_color = 'white';        //メッセージバナーの文字色を指定してください。
 
 function plcy_getCookie(c_name){
     var st="";
