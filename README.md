@@ -1,4 +1,4 @@
-# PolicyBannerWithGTM
+# Consent Manager (PolicyBannerWithGTM)
 This software is enable to show "Getting Cookie Permission Bar" and get accept.
 If you want to start some tools like Google Analytics or some tools after getting cookie permissions from users.
 You can make it easily to use this software.
