@@ -72,7 +72,7 @@ var plcy_message = 'We are using first party / third party cookie in our site to
 var plcy_button_name = 'Accept All Cookies';
 var plcy_button_color = 'lightgreen';
 var plcy_border_color = 'lightgreen';
-var plcy_back_color = '#272727db';
+var plcy_back_color = 'rgba(27,27,27,0.8)';
 var plcy_font_color = 'white';
 
 function plcy_getCookie(c_name){

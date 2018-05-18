@@ -18,7 +18,7 @@ var plcy_message = '当サイトでは、クッキーを利用したサービス
 var plcy_button_name = 'クッキー利用を許可する'; //ボタンの名称を決めてください。
 var plcy_button_color = 'lightgreen'; //ボタンの色を決めてください。
 var plcy_border_color = 'lightgreen'; //ボタンの線を決めてください。
-var plcy_back_color = '#272727db';    //メッセージバナーの背景色を指定してください。
+var plcy_back_color = 'rgba(27,27,27,0.8)';    //メッセージバナーの背景色を指定してください。
 var plcy_font_color = 'white';        //メッセージバナーの文字色を指定してください。
 
 function plcy_getCookie(c_name){
