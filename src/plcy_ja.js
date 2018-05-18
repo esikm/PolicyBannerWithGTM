@@ -100,7 +100,9 @@ function plcy_accepted(){
   }else{
     plcy_isAccepted = 1;
   }
-  dataLayer.push({'plcyIsAccepted':1,event: 'eventPolicyAccepted' });
+  if (typeof dataLayer != "undefined"){
+    dataLayer.push({'plcyIsAccepted':1,event: 'eventPolicyAccepted' });
+  }
   plcy_setCookie('plcyIsAccepted',1,365);
   plcy_close_banner();
 }
@@ -108,5 +110,8 @@ function plcy_accepted(){
 if (!plcyIsAccepted){
   appendHtml(document.body, plcy_html);
 }else{
-  dataLayer.push({'plcyIsAccepted':1,event: 'eventPolicyAccepted' });
+  if (typeof dataLayer != "undefined"){
+    dataLayer.push({'plcyIsAccepted':1,event: 'eventPolicyAccepted' });
+  }
+  var plcy_isAccepted = 1;
 }
