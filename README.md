@@ -49,8 +49,7 @@ Copyright (c) 2018 effort science co.,ltd.
       既存でトリガー（All Pageなど）に設定している場合、GTMでは追加すると「または」になるので、きちんと削除することを忘れないでください。
 
   6. [htmlページにて任意] 必要なら、許可を行うまで起動させたくないボタンや機能を制御できます。
-      変数は、'plcy_isAccepted'を使用してください。
-      許可前は '0' 許可後は '1'が設定されます。以下のように使うと良いでしょう。
+      Cookie の 'plcyIsAccepted'を読み込み判定を行なってください
 
       ex) JQueryを使った事例
 
@@ -61,6 +60,7 @@ Copyright (c) 2018 effort science co.,ltd.
       $(function(){
         $('#input_btn').click(function(e){
           e.preventDefault();
+          plcy_isAccepted = plcy_getCookie('plcyIsAccepted');
           if (plcy_isAccepted >0){
             alert('はい、あなたは許可されています。');  //ここを書き換えてください。
           }else{
@@ -115,8 +115,7 @@ You can make it easily to use this software.
   5. [In GTM] Set the trigger you created in No.4 into Tag you want to control.
 
   6. If you want to stop use some features in your site before permission,
-      Please use the 'plcy_isAccepted'.
-      This variable will be set 0 befor permission , 1 after permission.
+      Please use the cookie named 'plcyIsAccepted'.
 
       ex) the case with jQuery
 
@@ -127,6 +126,7 @@ You can make it easily to use this software.
       $(function(){
         $('#input_btn').click(function(e){
           e.preventDefault();
+          plcy_isAccepted = plcy_getCookie('plcyIsAccepted');
           if (plcy_isAccepted >0){
             alert('Yes , you can use our tool! ');
           }else{

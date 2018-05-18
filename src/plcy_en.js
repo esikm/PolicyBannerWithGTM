@@ -75,7 +75,7 @@ var plcy_border_color = 'lightgreen';
 var plcy_back_color = 'rgba(27,27,27,0.8)';
 var plcy_font_color = 'white';
 
-function plcy_getCookie(c_name){
+var plcy_getCookie = function (c_name){
     var st="";
     var ed="";
     if(document.cookie.length>0){
@@ -90,7 +90,7 @@ function plcy_getCookie(c_name){
     }
     return "";
 }
-var plcyIsAccepted = plcy_getCookie('plcyIsAccepted');
+var plcy_isAccepted = plcy_getCookie('plcyIsAccepted');
 
 function plcy_setCookie(c_name,value,expiredays){
     var path = location.pathname;
@@ -161,7 +161,7 @@ function plcy_accepted(){
   plcy_close_banner();
 }
 
-if (!plcyIsAccepted){
+if (!plcy_isAccepted){
   appendHtml(document.body, plcy_html);
 }else{
   if (typeof dataLayer != "undefined"){

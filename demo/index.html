@@ -91,6 +91,7 @@
       $('#input_btn').click(function(e){
         e.preventDefault();
 
+        plcy_isAccepted = plcy_getCookie('plcyIsAccepted');
         if (plcy_isAccepted >0){
           alert('Yes , you can use our tool! ');
         }else{
